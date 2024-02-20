@@ -2,6 +2,7 @@
   "expo": {
     "name": "Moviebook",
     "slug": "moviebook_demo",
+    "description": "A demo app for booking movie tickets.",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/logo.png",
