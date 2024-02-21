@@ -1,7 +1,5 @@
 import React from "react";
-import { useCallback } from "react";
 import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ToastProvider } from "react-native-toast-notifications";
@@ -11,8 +9,6 @@ import MovieDetailsScreen from "./src/screens/MovieDetailsScreen";
 import SeatBookingScreen from "./src/screens/SeatBookingScreen";
 
 const Stack = createNativeStackNavigator();
-
-SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
@@ -36,18 +32,12 @@ export default function App() {
     Poppins_ThinItalic: require("./src/assets/fonts/Poppins-ThinItalic.ttf"),
   });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded || fontError) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded, fontError]);
-
   if (!fontsLoaded && !fontError) {
     return null;
   }
   return (
     <ToastProvider>
-      <NavigationContainer onLayoutRootView={onLayoutRootView}>
+      <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Tab" component={TabNavigator} />
           <Stack.Screen
